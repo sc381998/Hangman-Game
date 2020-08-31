@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HangMan</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container startPage" id="startPage">
+      <header class="header my-4">
+        <h1 class="title text-center">
+          <span class="bg-info">H</span><span class="bg-warning">A</span
+          ><span class="bg-danger">N</span><span class="bg-info">G</span
+          ><span class="bg-warning">M</span><span class="bg-success">A</span
+          ><span class="bg-info">N</span>
+        </h1>
+        <div class="text-center adventure">
+          <span>A</span><span>D</span><span>V</span><span>E</span><span>N</span
+          ><span>T</span><span>U</span><span>R</span><span>E</span>
+        </div>
+      </header>
+      <div class="container text-center three-buttons">
+        <button class="btn btn-success easy" id="easy" onclick="startGame()">
+          EASY
+        </button>
+        <button class="btn btn-warning medium" id="medium" onclick="startGame()">MEDIUM</button>
+        <button class="btn btn-danger hard" id="hard" onclick="startGame()">HARD</button>
+      </div>
+
+      <div class="footer">
+        <span class="hint"  onclick="score()"
+          ><i class="fa fa-trophy" aria-hidden="true"></i></span>
+        <span class="music" onclick="music()"
+          ><i class="fa fa-volume-up" aria-hidden="true"></i
+        ></span>
+        <!-- <audio>
+          <i class="fas fa-volume-up"></i>
+           <source src="horse.mp3" type="audio/mpeg" /> 
+        </audio> -->
+      </div>
+    </div>
+    <div class="container hide hintContainer text-warning" id="hint">
+      <h1>TUTORIAL</h1>
+      <p>
+        Try to guess the secret word one letter at a time! If you guess an
+        incorrect letter, the bug will eat your computer one by one. To win, spell the word
+        before all the bugs left to reach out to your computer!
+      </p>
+      <div class="" id="checkDone" onclick="checkDone()">
+        <i class="fa fa-check text-success" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="hide game-container" id="game-container">
+      <div class="row">
+        <div class="column">
+          <div class="row top-row">
+            <span class="hint" onclick="home()"
+              ><i class="fa fa-home" aria-hidden="true"></i></span>
+            <span class="music" onclick="hint2()"
+              ><i class="fa fa-question-circle-o" aria-hidden="true"></i
+            ></span>
+          </div>
+          <div class="phrases-title">Animals</div>
+          <div class="blanks">
+            <div class="cell" id="cell1"></div>
+            <div class="cell" id="cell2"></div>
+            <div class="cell" id="cell3"></div>
+            <div class="cell" id="cell4"></div>
+            <div class="cell" id="cell5"></div>
+            <div class="cell" id="cell6"></div>
+          </div>
+          <div class="" id="alphabets">
+            <div id="a" class="btn-sagar" onclick="letterClick(this)">A</div>
+            <div id="b" class="btn-sagar" onclick="letterClick(this)">B</div>
+            <div id="c" class="btn-sagar" onclick="letterClick(this)">C</div>
+            <div id="d" class="btn-sagar" onclick="letterClick(this)">D</div>
+            <div id="e" class="btn-sagar" onclick="letterClick(this)">E</div>
+            <div id="f" class="btn-sagar" onclick="letterClick(this)">F</div>
+            <div id="g" class="btn-sagar" onclick="letterClick(this)">G</div>
+            <div id="h" class="btn-sagar" onclick="letterClick(this)">H</div>
+            <div id="i" class="btn-sagar" onclick="letterClick(this)">I</div>
+            <div id="j" class="btn-sagar" onclick="letterClick(this)">J</div>
+            <div id="k" class="btn-sagar" onclick="letterClick(this)">K</div>
+            <div id="l" class="btn-sagar" onclick="letterClick(this)">L</div>
+            <div id="m" class="btn-sagar" onclick="letterClick(this)">M</div>
+            <div id="n" class="btn-sagar" onclick="letterClick(this)">N</div>
+            <div id="o" class="btn-sagar" onclick="letterClick(this)">O</div>
+            <div id="p" class="btn-sagar" onclick="letterClick(this)">P</div>
+            <div id="q" class="btn-sagar" onclick="letterClick(this)">Q</div>
+            <div id="r" class="btn-sagar" onclick="letterClick(this)">R</div>
+            <div id="s" class="btn-sagar" onclick="letterClick(this)">S</div>
+            <div id="t" class="btn-sagar" onclick="letterClick(this)">T</div>
+            <div id="u" class="btn-sagar" onclick="letterClick(this)">U</div>
+            <div id="v" class="btn-sagar" onclick="letterClick(this)">V</div>
+            <div id="w" class="btn-sagar" onclick="letterClick(this)">W</div>
+            <div id="x" class="btn-sagar" onclick="letterClick(this)">X</div>
+            <div id="y" class="btn-sagar" onclick="letterClick(this)">Y</div>
+            <div id="z" class="btn-sagar" onclick="letterClick(this)">Z</div>
+          </div>
+        </div>
+
+        <div class="hangman">
+          <div class="row" id="bugs">
+            <div id="livesLeft1" /><img class="livesLeft" src="bug.png"></div>
+            <div id="livesLeft2"/><img  class="livesLeft"  src="bug.png"></div>
+            <div id="livesLeft3"  /><img class="livesLeft" src="bug.png"></div>
+            <div id="livesLeft4"  /><img class="livesLeft" src="bug.png"></div>
+            <div id="livesLeft5"  /><img class="livesLeft" src="bug.png"></div>
+          </div>
+          <div class="row">
+              <div class="won hide" id="saved">You Saved the Computer</div>
+          </div>
+          <img src="5.png" id="hangmanImg" />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="app.js"></script>
+</html>
